@@ -4,7 +4,9 @@
 <title>Intro to Contrast-O-Vision</title>
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="./intro.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sarina&text=Complext">
 
 <h1>
   <svg viewBox="0 0 90 15" role="presentation">
@@ -27,8 +29,8 @@
     </p>
   </div>
 
-  <button id="toggle" class="toggleBtn">
-    <svg class="toggleBtn_svg" aria-hidden="true" stroke="#a9a9a9"
+  <button id="toggle" class="toggle-btn">
+    <svg class="toggle-btn__svg" aria-hidden="true" stroke="#a9a9a9"
       viewBox="-312 -312 624 624" width="600" height="600">
       <circle r="10" stroke-width="22em"/>
       <circle r="40" stroke-width="20em"/>
@@ -48,10 +50,10 @@
 
   <ul class="examples">
     <li class="example">
-      <div class="example-background">Complex<br>backgrounds</div>
+      <div class="example--background">Complex<br>backgrounds</div>
     </li>
 
-    <li class="example example-text">
+    <li class="example example--text">
       <svg role="presentation" viewBox="0 0 340 140" width="320" height="140">
         <linearGradient id="fadient">
           <stop stop-opacity="0.05"/>
@@ -71,10 +73,10 @@
       </svg>
     </li>
 
-    <li class="example example-animation">Animation</li>
+    <li class="example example--animation">Animation</li>
 
-    <li class="example example-dynamic">
-      <textarea class="example_textarea">Editable content</textarea>
+    <li class="example example--dynamic">
+      <textarea class="example__textarea">Editable content</textarea>
     </li>
   </ul>
 </main>
@@ -152,8 +154,8 @@
 </svg>
 
 <script>
-  document.querySelector('.toggleBtn').addEventListener('click', function() {
-    document.body.classList.toggle('contrast-o-vision-on');
-    this.classList.toggle('pressed');
+  document.querySelector('.toggle-btn').addEventListener('click', function() {
+    document.body.classList.toggle('contrast-o-vision--on');
+    this.classList.toggle('toggle-btn--pressed');
   });
 </script>

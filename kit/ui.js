@@ -2,9 +2,9 @@ function grab(selector) {
   return document.querySelector(selector);
 }
 
-var urlbar = grab('.input-url');
-var iframe = grab('.testFrame');
-var refreshBtn = grab('.buttonrefresh');
+var urlbar = grab('.input--url');
+var iframe = grab('.test-frame');
+var refreshBtn = grab('.btn--refresh');
 
 iframe.style.filter = 'none';
 

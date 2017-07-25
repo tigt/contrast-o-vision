@@ -5,16 +5,17 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no">
 <meta name="theme-color" content="#000">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="./kit/ui.css">
 <script defer src="./kit/ui.js"></script>
 
 <menu class="ui">
-  <form class="ui_urlBar" target="testframe" action="https://httpbin.org/redirect-to">
-    <p class="urlBar_field field-url">
-      <label class="field_label-url">
-        <span class="srOnly">Check URL:</span>
+  <form class="ui__url-bar" target="testframe" action="https://httpbin.org/redirect-to">
+    <p class="url-bar__field field--url">
+      <label class="field__label--url">
+        <span class="visually-hidden">Check URL:</span>
 
-        <input name="url" class="input-url"
+        <input name="url" class="input--url"
                type="url" required
                placeholder="about:contrast-o-vision"
                title="Please enter a valid URL."
@@ -22,14 +23,14 @@
       </label>
     </p>
 
-    <p class="urlBar_field field-go">
-      <button type="submit" class="button button-go">Go</button>
+    <p class="url-bar__field field--go">
+      <button type="submit" class="btn btn--go">Go</button>
     </p>
 
-    <p class="urlBar_field field-refresh">
-      <button type="button" class="button-refresh"
+    <p class="url-bar__field field--refresh">
+      <button type="button" class="btn--refresh"
         aria-label="Refresh" title="Refresh">
-        <svg viewBox="0 0 180 180" width="1em" height="1em" class="refresh_svg">
+        <svg viewBox="0 0 180 180" width="1em" height="1em" class="refresh__svg">
           <path fill="none" stroke="currentColor" stroke-width="26"
             d="M140 135a67 67 0 1 1 0-90m9 0l-20 20h30V35z"/>
         </svg>

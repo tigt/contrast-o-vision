@@ -29,12 +29,12 @@ body {
   overflow-y: auto;
 }
 
-.contrast-o-vision-on {
+.contrast-o-vision--on {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 24' stroke='lime' width='27.5' height='6'%3E%3Ccircle r='10'/%3E%3Ccircle cy='24' r='10'/%3E%3Ccircle cy='12' cx='12' r='9'/%3E%3Ccircle cx='24' r='8'/%3E%3Ccircle cy='24' cx='24' r='8'/%3E%3Ccircle cy='12' cx='36' r='7'/%3E%3Ccircle cx='48' r='6'/%3E%3Ccircle cy='24' cx='48' r='6'/%3E%3Ccircle cy='12' cx='60' r='5'/%3E%3Ccircle cx='72' r='4'/%3E%3Ccircle cy='24' cx='72' r='4'/%3E%3Ccircle cy='12' cx='84' r='3'/%3E%3Ccircle cx='96' r='2'/%3E%3Ccircle cy='24' cx='96' r='2'/%3E%3Ccircle cy='12' cx='108' r='1'/%3E%3C/svg%3E"),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 24' stroke='lime' width='27.5' height='6'%3E%3Ccircle cx='108' r='10'/%3E%3Ccircle cx='108' cy='24' r='10'/%3E%3Ccircle cy='12' cx='96' r='9'/%3E%3Ccircle cx='84' r='8'/%3E%3Ccircle cy='24' cx='84' r='8'/%3E%3Ccircle cy='12' cx='72' r='7'/%3E%3Ccircle cx='60' r='6'/%3E%3Ccircle cy='24' cx='60' r='6'/%3E%3Ccircle cy='12' cx='48' r='5'/%3E%3Ccircle cx='36' r='4'/%3E%3Ccircle cy='24' cx='36' r='4'/%3E%3Ccircle cy='12' cx='24' r='3'/%3E%3Ccircle cx='12' r='2'/%3E%3Ccircle cy='24' cx='12' r='2'/%3E%3Ccircle cy='12' cx='1' r='1'/%3E%3C/svg%3E ");
 }
 
-.contrast-o-vision-on h1 text {
+.contrast-o-vision--on h1 text {
   stroke: #0f0;
   stroke-width: 0.1px;
 }
@@ -89,7 +89,7 @@ main {
   margin-bottom: 0;
 }
 
-.contrast-o-vision-on .example {
+.contrast-o-vision--on .example {
   filter: url(#contrast-o-vision);
   background: #fff; /* needed for filters to work correctly */
 }
@@ -106,21 +106,21 @@ main {
   margin-left: 0;
 }
 
-.example-background {
+.example--background {
   background: linear-gradient(45deg, rgba(0,0,0,0.7), rgba(0,0,0,0));
   padding: 0.5em;
   box-shadow: inset 0 0 4px 4px #fff;
 }
 
-.example-text {
+.example--text {
   margin: 0;
 }
 
-.example-text svg {
+.example--text svg {
   width: 100%;
 }
 
-.example-animation {
+.example--animation {
   position: relative;
   overflow: hidden;
   animation: 2s shimmy infinite ease-in-out;
@@ -131,7 +131,7 @@ main {
   50%  { transform: rotate(10deg) }
 }
 
-.example_textarea {
+.example__textarea {
   padding: 0.2em;
   width: 100%;
   position: relative;
@@ -144,7 +144,7 @@ svg {
   height: auto;
 }
 
-.toggleBtn {
+.toggle-btn {
   display: table;
   margin: 2em auto;
   font-size: 2vmin;
@@ -161,7 +161,7 @@ svg {
   perspective: 1000px;
 }
 
-.toggleBtn > span {
+.toggle-btn > span {
   position: absolute;
   top: 50%; left: 50%;
   width: 100%;
@@ -173,16 +173,16 @@ svg {
   font-family: Verdana;
 }
 
-.toggleBtn.pressed > span {
+.toggle-btn--pressed > span {
   color: rgba(#ddd, 0.95);
 }
 
-.toggleBtn_svg {
+.toggle-btn__svg {
   width: 100%;
   height: 100%;
 }
 
-.toggleBtn_svg {
+.toggle-btn__svg {
   font-size: 0.5px;
   transition: .2s font-size cubic-bezier(0.1, 1, 0.22, 1);
   stroke-linecap: round;
@@ -190,34 +190,34 @@ svg {
   stroke-dasharray: 0 31.415 0 31.415;
 }
 
-.toggleBtn:hover:not(.pressed),
-.toggleBtn:focus:not(.pressed) {
+.toggle-btn:hover:not(.toggle-btn--pressed),
+.toggle-btn:focus:not(.toggle-btn--pressed) {
   transform: translateY(-2px);
   box-shadow: 0 17px 10px rgba(#000, 0.7);
 }
-.toggleBtn:hover:not(.pressed) .toggleBtn_svg,
-.toggleBtn:focus:not(.pressed) .toggleBtn_svg {
+.toggle-btn:hover:not(.toggle-btn--pressed) .toggle-btn__svg,
+.toggle-btn:focus:not(.toggle-btn--pressed) .toggle-btn__svg {
   font-size: 0.7px;
 }
 
-.toggleBtn:active:not(.pressed) {
+.toggle-btn:active:not(.toggle-btn--pressed) {
   transform: translateY(-4px);
   background: #ddd;
 }
-.toggleBtn:active:not(.pressed) .toggleBtn_svg {
+.toggle-btn:active:not(.toggle-btn--pressed) .toggle-btn__svg {
   font-size: 0.3px;
 }
 
-.toggleBtn.pressed {
+.toggle-btn--pressed {
   background-color: #000;
   transform: translateY(15px);
   box-shadow: 0 0 0.2em 0.1em #0f0;
   border-bottom-width: 0;
 }
-.pressed .toggleBtn_svg {
+.toggle-btn--pressed .toggle-btn__svg {
   font-size: 2.5px;
   stroke: #0f0;
 }
-.pressed .toggleBtn_svg text {
+.toggle-btn--pressed text {
   fill: white !important;
 }
