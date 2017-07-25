@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Intro to Contrast-O-Vision</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no">
+
+<link rel="stylesheet" href="./intro.css">
+
+<h1>
+  <svg viewBox="0 0 90 15" role="presentation">
+    <text y="14" dx="0 0 0 0 0 0 0 0 -2 0 0 -1" textLength="93"
+      lengthAdjust="spacingAndGlyphs">Contrast-O-Vision</text>
+  </svg>
+</h1>
+
+<main>
+  <div class="intro">
+    <p>
+      Sick of copy/pasting color codes for accessible contrast checking?
+      <b>You’ve come to the right place.</b>
+    </p>
+
+    <p>
+      Put a URL in that bar up ↑ thar,
+      and see accessible contrast before your very eyes &mdash; in real time!
+      If your browser can render it, you can check it:
+    </p>
+  </div>
+
+  <button id="toggle" class="toggleBtn">
+    <svg class="toggleBtn_svg" aria-hidden="true" stroke="#a9a9a9"
+      viewBox="-312 -312 624 624" width="600" height="600">
+      <circle r="10" stroke-width="22em"/>
+      <circle r="40" stroke-width="20em"/>
+      <circle r="70" stroke-width="18em"/>
+      <circle r="100" stroke-width="16em"/>
+      <circle r="130" stroke-width="14em"/>
+      <circle r="160" stroke-width="12em"/>
+      <circle r="190" stroke-width="10em"/>
+      <circle r="220" stroke-width="8em"/>
+      <circle r="250" stroke-width="6em"/>
+      <circle r="280" stroke-width="4em"/>
+      <circle r="310" stroke-width="2em"/>
+    </svg>
+
+    <span>SHOW ME</span>
+  </button>
+
+  <ul class="examples">
+    <li class="example">
+      <div class="example-background">Complex<br>backgrounds</div>
+    </li>
+
+    <li class="example example-text">
+      <svg role="presentation" viewBox="0 0 340 140" width="320" height="140">
+        <linearGradient id="fadient">
+          <stop stop-opacity="0.05"/>
+          <stop offset=".5"/>
+          <stop offset="1" stop-opacity="0.05"/>
+        </linearGradient>
+
+        <pattern id="pattern2" width="40" height="40" viewBox="0 0 4 4"
+                 patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <path fill="url(#fadient)" d="m0 0h4v4H0"/>
+        </pattern>
+
+        <text x="50%" y="1em" fill="url(#pattern2)"
+          font-size="60" font-family="Sarina" text-anchor="middle">
+          Complex <tspan x="50%" dy="1em">text</tspan>
+        </text>
+      </svg>
+    </li>
+
+    <li class="example example-animation">Animation</li>
+
+    <li class="example example-dynamic">
+      <textarea class="example_textarea">Editable content</textarea>
+    </li>
+  </ul>
+</main>
+
+<svg height="1" width="1" class="filter-svg">
+  <filter id="contrast-o-vision"
+          color-interpolation-filters="linearRGB"
+          x="0" y="0" width="1" height="1"> <!-- set filter area to filtered element's dimensions -->
+
+    <!-- STEP 1: Convert each pixel based on its luminance
+
+         This feColorMatrix shorthand converts each pixel to rgba(0,0,0, X), where X is the pixel's luminance. This should match the official WCAG algorithm: https://www.w3.org/TR/WCAG20/relative-luminance.xml
+
+         The first operation in the WCAG algorithm when each color component is ≤0.03928 appears to be the conversion from sRGB to linear RGB, so as long as we specify `color-interpolation-filters="linearRGB"` like above, this should be equivalent.
+      -->
+    <feColorMatrix in="SourceGraphic"
+                   type="luminanceToAlpha"
+                   result="LUMINANCE"/>
+
+    <!-- Possible tweak: slight blur to iron out irregularities -->
+
+    <!-- STEP 2: Find high-contrast edges between pixel luminances
+
+         This particular convolution matrix kernel is known as an "Edge Detect", which you may have used in a graphics editor. It displays lines more vividly when the difference between two adjacent pixels is high.
+
+         It would be nice to know if it can be tweaked to exaggerate/soften its output.
+
+         Other possible matrices:
+           kernelMatrix=" 1 -2  1
+                         -2  4 -2
+                          1 -2  1"
+
+
+    -->
+    <feConvolveMatrix in="LUMINANCE"
+                      kernelMatrix="1  1  1
+                                    1 -8  1
+                                    1  1  1"
+                      result="EDGES"/>
+
+    <!-- STEP 3: Hide all edges too faint to meet contrast requirements
+
+        This filter operation should "round" each pixel to either full opacity or full transparency, depending on which one it's closer to. Edges too faint to match the WCAG requirements should disappear. -->
+    <feComponentTransfer in="EDGES"
+                         result="VALID_EDGES">
+      <feFuncA type="discrete"
+               tableValues="0 1"/> <!-- Locks opacity to either 0 or 1 -->
+    </feComponentTransfer>
+
+    <!-- Change the black pixels to be green instead -->
+    <feColorMatrix in="VALID_EDGES"
+                   type="matrix"
+                   values="1  0  0  0  -1
+                           0  1  0  0   0.8
+                           0  0  1  0   0.2
+                           0  0  0  1   0"
+                   result="INVERTED_VALID_EDGES"/>
+
+
+    <!-- Generate a very dark overlay color -->
+    <feFlood flood-color="rgba(0, 0, 0, 0.92)"
+             result="PARTIALLY_TRANSPARENT_BLACK"/>
+
+    <!-- Mix that color with the original image, producing a dimmed version -->
+    <feBlend in="PARTIALLY_TRANSPARENT_BLACK"
+             in2="SourceGraphic"
+             result="DIMMED_ORIGINAL_ELEMENT"/>
+
+    <!-- Overlay the edges on top of the dimmed element -->
+    <feMerge>
+      <feMergeNode in="DIMMED_ORIGINAL_ELEMENT"/>
+      <feMergeNode in="INVERTED_VALID_EDGES"/>
+    </feMerge>
+  </filter>
+</svg>
+
+<script>
+  document.querySelector('.toggleBtn').addEventListener('click', function() {
+    document.body.classList.toggle('contrast-o-vision-on');
+    this.classList.toggle('pressed');
+  });
+</script>

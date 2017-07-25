@@ -1,0 +1,121 @@
+*, :before, :after {
+  box-sizing: inherit;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  display: table;
+  height: 100%;
+  width: 100%;
+  font-family: Trebuchet MS, sans-serif;
+}
+
+.ui {
+  display: table-row;
+  z-index: 1;
+  font-size: 1.2em;
+  background: #444;
+  box-shadow: inset 0 -1px #999;
+}
+
+.ui_urlBar {
+  display: table;
+  padding: 0.4em;
+  width: 100%;
+}
+
+.urlBar_field {
+  display: table-cell;
+}
+
+.input-url {
+  width: 100%;
+  padding: 0.2em 0.3em 0.1em;
+  border-radius: 0.2em;
+  border: 0;
+}
+.input-url:focus {
+  box-shadow: 0 0 2px 1px #eee;
+}
+.input-url:focus:valid {
+  box-shadow: 0 0 2px 1px #0f0;
+}
+
+.button-go {
+  height: 100%;
+  border: 0;
+  background: #fff;
+  padding: 0;
+  margin-left: -1.5em;
+}
+
+.field-refresh {
+  width: 1em;
+  vertical-align: middle;
+}
+
+.button-refresh {
+  height: 100%;
+  padding: 0.1em 0.2em;
+  border: 0;
+  background: #ccc;
+  margin-left: 0.1em;
+  border-radius: 0.2em;
+}
+.button-refresh:hover {
+  box-shadow: 0 2px;
+  background: #eee;
+}
+.button-refresh:active {
+  box-shadow: inset 0 0 2px;
+  background: #ccc;
+}
+
+.refresh_svg {
+  display: block;
+}
+
+.refresh:active > .refresh_svg {
+  -webkit-animation: 100ms spin forwards;
+          animation: 100ms spin forwards;
+}
+
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(1turn);
+            transform: rotate(1turn);
+  }
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(1turn);
+            transform: rotate(1turn);
+  }
+}
+main {
+  display: table-row;
+  height: 100%;
+}
+
+.testFrame {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  background-color: #fff;
+  border: 0;
+  filter: url(#contrast-o-vision);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1;
+  height: 1;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
