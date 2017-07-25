@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" class="filter-svg">
   <!-- set filter area to filtered element's dimensions -->
   <filter id="contrast-o-vision" x="0" y="0" width="1" height="1">
 

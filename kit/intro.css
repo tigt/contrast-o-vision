@@ -7,13 +7,6 @@
   src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/183091/OstrichSans-Black-subset.woff);
 }
 
-*, :before, :after { box-sizing: inherit }
-
-html {
-  height: 100%;
-  box-sizing: border-box;
-}
-
 body {
   height: 100%;
   font-family: Trebuchet MS, sans-serif;
@@ -42,13 +35,10 @@ body {
 h1 {
   text-align: center;
   margin: 0.5em 0.1em 0.1em;
-  font: inherit;
-}
-h1 text {
   font: 1em Ostrich Sans, sans-serif;
 }
 @media (min-width: 30em) {
-  h1 text {
+  h1 {
     font-family: Ostrich Sans Inline, sans-serif;
   }
 }
@@ -59,7 +49,7 @@ main {
 }
 
 .intro {
-  line-height: calc(1.3em + (1.5 - 1.3) * ((100vw - 21em)/(35 - 21)));
+  line-height: calc(1.3em + (1.5 - 1.3) * ((100vw - 21em) / 14 ));
   font-size: calc(.9375em + .46875vw - 1.5px );
 }
 
@@ -89,11 +79,6 @@ main {
   margin-bottom: 0;
 }
 
-.contrast-o-vision--on .example {
-  filter: url(#contrast-o-vision);
-  background: #fff; /* needed for filters to work correctly */
-}
-
 .example {
   display: inline-block;
   margin: 0.5em;
@@ -101,6 +86,9 @@ main {
   font-size: 2em;
   line-height: 1;
   max-width: 100%;
+
+  filter: url(#contrast-o-vision);
+  background: #fff; /* needed for filters to work correctly */
 }
 .example:first-child {
   margin-left: 0;
@@ -142,82 +130,4 @@ main {
 svg {
   max-width: 100%;
   height: auto;
-}
-
-.toggle-btn {
-  display: table;
-  margin: 2em auto;
-  font-size: 2vmin;
-  border: 0;
-  background: #eee;
-  width: 10em;
-  height: 10em;
-  border-radius: 50%;
-  border-bottom: 0.5em gray solid;
-  transition: .5s cubic-bezier(0.1, 1, 0.22, 1);
-  box-shadow: 0 15px 10px rgba(#000, 0.7);
-  position: relative;
-  outline: none;
-  perspective: 1000px;
-}
-
-.toggle-btn > span {
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 100%;
-  transform: translate(-50%, -55%) scaleY(1.5) rotateX(30deg);
-  transform-style: preserve-3d;
-  font-size: 1.8em;
-  font-weight: 600;
-  letter-spacing: -0.05em;
-  font-family: Verdana;
-}
-
-.toggle-btn--pressed > span {
-  color: rgba(#ddd, 0.95);
-}
-
-.toggle-btn__svg {
-  width: 100%;
-  height: 100%;
-}
-
-.toggle-btn__svg {
-  font-size: 0.5px;
-  transition: .2s font-size cubic-bezier(0.1, 1, 0.22, 1);
-  stroke-linecap: round;
-  fill: none;
-  stroke-dasharray: 0 31.415 0 31.415;
-}
-
-.toggle-btn:hover:not(.toggle-btn--pressed),
-.toggle-btn:focus:not(.toggle-btn--pressed) {
-  transform: translateY(-2px);
-  box-shadow: 0 17px 10px rgba(#000, 0.7);
-}
-.toggle-btn:hover:not(.toggle-btn--pressed) .toggle-btn__svg,
-.toggle-btn:focus:not(.toggle-btn--pressed) .toggle-btn__svg {
-  font-size: 0.7px;
-}
-
-.toggle-btn:active:not(.toggle-btn--pressed) {
-  transform: translateY(-4px);
-  background: #ddd;
-}
-.toggle-btn:active:not(.toggle-btn--pressed) .toggle-btn__svg {
-  font-size: 0.3px;
-}
-
-.toggle-btn--pressed {
-  background-color: #000;
-  transform: translateY(15px);
-  box-shadow: 0 0 0.2em 0.1em #0f0;
-  border-bottom-width: 0;
-}
-.toggle-btn--pressed .toggle-btn__svg {
-  font-size: 2.5px;
-  stroke: #0f0;
-}
-.toggle-btn--pressed text {
-  fill: white !important;
 }
