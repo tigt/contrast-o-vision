@@ -167,15 +167,3 @@
     </feMerge>
   </filter>
 </svg>
-
-<script>
-  document.querySelector('.toggle-btn').addEventListener('click', function() {
-    var pressed = this.getAttribute('aria-pressed') === 'false';
-    document.body.classList.toggle('contrast-o-vision--on');
-
-    this.setAttribute('aria-pressed', pressed ? 'true' : 'false');
-    this.innerText = pressed ?
-      'Turn off Contrast-O-Vision' :
-      'Turn on Contrast-O-Vision';
-  });
-</script>

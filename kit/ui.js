@@ -14,7 +14,7 @@ urlbar.addEventListener('change', function() {
 });
 
 iframe.onload = function(evt) {
-  if (this.src.indexOf('/kit/intro.html') === -1) this.removeAttribute('style');
+  if (this.src.indexOf('//contrast-o-vision.ti.gt') === -1) this.removeAttribute('style');
 };
 
 refreshBtn.addEventListener('click', function() {
