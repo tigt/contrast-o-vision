@@ -29,44 +29,71 @@
     </p>
   </div>
 
-  <button id="toggle" class="toggle-btn" aria-pressed="false">
-    Turn on Contrast-O-Vision
-  </button>
+  <table class="examples">
+    <thead>
+      <tr>
+        <th scope="col">Before</th>
+        <th scope="col">After</th>
+      </tr>
+    </thead>
 
-  <ul class="examples">
-    <li class="example">
-      <div class="example--background">Complex<br>backgrounds</div>
-    </li>
+    <tr>
+      <td class="example example--background">Complex<br>backgrounds</td>
+      <td class="example example--background filtered">Complex<br>backgrounds</td>
+    </tr>
 
-    <li class="example example--text">
-      <svg role="presentation" viewBox="0 0 340 140" width="320" height="140">
-        <linearGradient id="fadient">
-          <stop stop-opacity="0.05"/>
-          <stop offset=".5"/>
-          <stop offset="1" stop-opacity="0.05"/>
-        </linearGradient>
+    <tr>
+      <td class="example example--text">
+        <svg role="presentation" viewBox="0 0 340 140" width="320" height="140">
+          <linearGradient id="fadient">
+            <stop stop-opacity="0.05"/>
+            <stop offset=".5"/>
+            <stop offset="1" stop-opacity="0.05"/>
+          </linearGradient>
 
-        <pattern id="pattern2" width="40" height="40" viewBox="0 0 4 4"
-                 patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-          <path fill="url(#fadient)" d="m0 0h4v4H0"/>
-        </pattern>
+          <pattern id="pattern2" width="40" height="40" viewBox="0 0 4 4"
+                   patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <path fill="url(#fadient)" d="m0 0h4v4H0"/>
+          </pattern>
 
-        <text x="50%" y="1em" fill="url(#pattern2)"
-          font-size="60" font-family="Sarina" text-anchor="middle">
-          Complex <tspan x="50%" dy="1em">text</tspan>
-        </text>
-      </svg>
-    </li>
+          <text x="50%" y="1em" fill="url(#pattern2)"
+            font-size="60" font-family="Sarina" text-anchor="middle">
+            Complex <tspan x="50%" dy="1em">text</tspan>
+          </text>
+        </svg>
+      </td>
+      <td class="example example--text filtered">
+        <svg role="presentation" viewBox="0 0 340 140" width="320" height="140">
+          <text x="50%" y="1em" fill="url(#pattern2)"
+            font-size="60" font-family="Sarina" text-anchor="middle">
+            Complex <tspan x="50%" dy="1em">text</tspan>
+          </text>
+        </svg>
+      </td>
+    </tr>
 
-    <li class="example example--animation">Animation</li>
+    <tr>
+      <td class="example"><p class="example--animation">Animation</p></td>
+      <td class="example filtered"><p class="example--animation">Animation</p></td>
+    </tr>
 
-    <li class="example example--dynamic">
-      <!-- <textarea class="example__textarea">Editable content</textarea> -->
-      <select class="example--dynamic__select">
-        <option>Dynamic content</option>
-      </select>
-    </li>
-  </ul>
+    <tr>
+      <td class="example example--dynamic">
+        <select class="example--dynamic__select">
+          <option>Dynamic content</option>
+          <option>Editable content</option>
+          <option>Any content!</option>
+        </select>
+      </td>
+      <td class="example example--dynamic filtered">
+        <select class="example--dynamic__select">
+          <option>Dynamic content</option>
+          <option>Editable content</option>
+          <option>Any content!</option>
+        </select>
+      </td>
+    </tr>
+  </table>
 </main>
 
 <svg height="1" width="1" class="filter-svg">

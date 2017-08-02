@@ -9,8 +9,13 @@ var refreshBtn = grab('.btn--refresh');
 iframe.style.filter = 'none';
 
 urlbar.addEventListener('change', function() {
+  iframe.style.visibility = 'hidden';
   iframe.src = urlbar.value;
 });
+
+iframe.onload = function(evt) {
+  if (this.src.indexOf('contrast-o-vision/kit/intro.html') === -1) this.removeAttribute('style');
+};
 
 refreshBtn.addEventListener('click', function() {
   var currentSrc = iframe.src;
