@@ -1,12 +1,3 @@
-@font-face {
-  font-family: Ostrich Sans Inline;
-  src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/183091/OstrichSansInline-Regular-subset.woff);
-}
-@font-face {
-  font-family: Ostrich Sans;
-  src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/183091/OstrichSans-Black-subset.woff);
-}
-
 body {
   height: 100%;
   font-family: Trebuchet MS, sans-serif;
@@ -22,12 +13,10 @@ body {
 h1 {
   text-align: center;
   margin: 0.5em 0.1em 0.1em;
-  font: 1em Ostrich Sans, sans-serif;
 }
-@media (min-width: 30em) {
-  h1 {
-    font-family: Ostrich Sans Inline, sans-serif;
-  }
+
+.logo {
+  width: 100%;
 }
 
 main {
