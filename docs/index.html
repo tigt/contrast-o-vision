@@ -3,13 +3,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no">
 <meta name="theme-color" content="#000000">
-<title>Contrast-O-Vision</title>
-
 <link rel="stylesheet" href="./css/base.css">
 <link rel="stylesheet" href="./css/ui.css">
 <script defer src="./js/ui.js"></script>
 
 <menu class="ui">
+  <nav class="ui__nav">
+    <a href="/" class="ui__nav-link">Home</a>
+    <!-- <a href="/about.html" class="ui__nav-link">About</a> -->
+    <a href="https://github.com/tigt/contrast-o-vision" class="ui__nav-link">Source Code</a>
+  </nav>
+
   <form class="ui__url-bar"
     target="testframe" action="https://httpbin.org/redirect-to">
     <p class="url-bar__field field--url">
@@ -58,6 +62,29 @@
     </switch>
   </svg>
 </main>
+
+<aside role="error" class="iframe-error" hidden>
+  <h2 class="iframe-error__title">Page embed error</h2>
+
+  <p>It looks like that URL might not load. Your DevTools console probably has more info.</p>
+
+  <p>Because this <code>&lt;iframe&gt;</code>s separate-origin sites, I unfortunately can’t be more helpful. Among the reasons you could be seeing this:</p>
+
+  <ul>
+    <li>
+      <p><b>Most common:</b> The page has an <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options"><code>X-Frame-Options</code> header</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">Content Security Policy</a>, blocking it from being framed.</p>
+      <p>I’m working on a bookmarklet and browser extensions to get around this.</p>
+    </li>
+
+    <li>
+      <p>The URL may be wrong. Check your DevTools’s Network tab.</p>
+    </li>
+
+    <li>
+      <p>The page may just be loading slowly. (I can’t tell, because 3<sup>rd</sup> party framing.)</p>
+    </li>
+  </ul>
+</aside>
 
 <svg xmlns="http://www.w3.org/2000/svg"
   width="1" height="1" style="position:absolute;z-index:-1"

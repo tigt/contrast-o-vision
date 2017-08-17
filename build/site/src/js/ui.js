@@ -1,3 +1,5 @@
+var unframeableDomains = /google|twitter|medium|facebook|github(?:\.com)/i;
+
 function grab(selector) {
   return document.querySelector(selector);
 }
@@ -9,13 +11,14 @@ var refreshBtn = grab('.btn--refresh');
 grab('#iframe-wrapper').removeAttribute('filter');
 
 urlbar.addEventListener('change', function() {
-  iframe.style.visibility = 'hidden';
-  iframe.src = urlbar.value;
+  if (unframeableDomains.test(urlbar.value)) {
+    alert('Sorry, they block me from <iframe>ing them. Try something less secure.');
+    urlbar.value = 'http://';
+  } else {
+    iframe.src = urlbar.value;
+    grab('#iframe-wrapper').setAttribute('filter', 'url(#contrast-o-vision)');
+  }
 });
-
-iframe.onload = function(evt) {
-  if (this.src.indexOf('//contrast-o-vision.ti.gt') === -1) this.removeAttribute('filter');
-};
 
 refreshBtn.addEventListener('click', function() {
   var currentSrc = iframe.src;
