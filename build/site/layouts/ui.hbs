@@ -1,0 +1,58 @@
+{{> start }}
+<title>Contrast-O-Vision</title>
+
+<link rel="stylesheet" href="./css/base.css">
+<link rel="stylesheet" href="./css/ui.css">
+<script defer src="./js/ui.js"></script>
+
+<menu class="ui">
+  <form class="ui__url-bar"
+    target="testframe" action="https://httpbin.org/redirect-to">
+    <p class="url-bar__field field--url">
+      <label class="field__label--url">
+        <span class="visually-hidden">Check URL:</span>
+
+        <input name="url" class="input--url"
+               type="url" required
+               autocomplete="off"
+               placeholder="about:contrast-o-vision"
+               title="Please enter a valid URL."
+               x-moz-errormessage="Please enter a valid URL.">
+      </label>
+    </p>
+
+    <p class="url-bar__field field--go">
+      <button type="submit" class="btn btn--go">Go</button>
+    </p>
+
+    <p class="url-bar__field field--refresh">
+      <button type="button" class="btn--refresh"
+        aria-label="Refresh" title="Refresh">
+        <svg viewBox="0 0 180 180" width="1em" height="1em" class="refresh__svg">
+          <path fill="none" stroke="currentColor" stroke-width="26" d="M140 135a67 67 0 1 1 0-90m9 0l-20 20h30V35z"/>
+        </svg>
+      </button>
+    </p>
+  </form>
+</menu>
+
+<main>
+  <svg class="main__svg" width="100%" height="100%">
+    <switch>
+      <foreignObject id="iframe-wrapper" width="100%" height="100%"
+        filter="url(#contrast-o-vision)"
+        requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+        <iframe name="testframe" class="test-frame"
+          src="./intro.html"
+          title="Page currently being tested"></iframe>
+      </foreignObject>
+
+      <text y="1em" x="50%" text-anchor="middle">
+        It looks like your browser
+        <tspan dy="1.2em" x="50%"><a xlink:href="./supported-browsers" href="./supported-browsers">doesn’t support Contrast-O-Vision</a></tspan>.
+      </text>
+    </switch>
+  </svg>
+</main>
+
+{{> filters.svg}}

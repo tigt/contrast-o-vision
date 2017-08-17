@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no">
+<meta name="theme-color" content="#000000">
+<title>What is Contrast-O-Vision?</title>
+
+<link rel="stylesheet" href="./css/base.css">
+<link rel="stylesheet" href="./css/intro.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sarina&text=Complext">
+
+<h1>
+  <svg viewBox="0 0 90 15" role="presentation">
+    <text y="14" dx="0 0 0 0 0 0 0 0 -2 0 0 -1" textLength="90"
+      lengthAdjust="spacingAndGlyphs">Contrast-O-Vision</text>
+  </svg>
+</h1>
+
+<main>
+  <div class="intro">
+    <p>
+      Sick of copy/pasting color codes for accessible contrast checking?
+      <b>You’ve come to the right place.</b>
+    </p>
+
+    <p>
+      Put a URL in that bar up ↑ thar,
+      and <b>see accessible contrast in real time</b>!
+      If your browser can render it, you can check it:
+    </p>
+  </div>
+
+  <table class="examples">
+    <thead>
+      <tr>
+        <th scope="col">Before</th>
+        <th scope="col">After</th>
+      </tr>
+    </thead>
+
+    <tr>
+      <td class="example example--background">Complex<br>backgrounds</td>
+      <td class="example example--background filtered">Complex<br>backgrounds</td>
+    </tr>
+
+    <tr>
+      <td class="example example--text">
+        <svg role="presentation" viewBox="0 0 340 140" width="320" height="140">
+          <linearGradient id="fadient">
+            <stop stop-opacity="0.05"/>
+            <stop offset=".5"/>
+            <stop offset="1" stop-opacity="0.05"/>
+          </linearGradient>
+
+          <pattern id="pattern2" width="40" height="40" viewBox="0 0 4 4"
+                   patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <path fill="url(#fadient)" d="m0 0h4v4H0"/>
+          </pattern>
+
+          <text x="50%" y="1em" fill="url(#pattern2)"
+            font-size="60" font-family="Sarina" text-anchor="middle">
+            Complex <tspan x="50%" dy="1em">text</tspan>
+          </text>
+        </svg>
+      </td>
+      <td class="example example--text filtered">
+        <svg role="presentation" viewBox="0 0 340 140" width="320" height="140">
+          <text x="50%" y="1em" fill="url(#pattern2)"
+            font-size="60" font-family="Sarina" text-anchor="middle">
+            Complex <tspan x="50%" dy="1em">text</tspan>
+          </text>
+        </svg>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="example"><p class="example--animation">Animation</p></td>
+      <td class="example filtered"><p class="example--animation">Animation</p></td>
+    </tr>
+
+    <tr>
+      <td class="example example--dynamic">
+        <select class="example--dynamic__select">
+          <option>Dynamic content</option>
+          <option>Editable content</option>
+          <option>Any content!</option>
+        </select>
+      </td>
+      <td class="example example--dynamic filtered">
+        <select class="example--dynamic__select">
+          <option>Dynamic content</option>
+          <option>Editable content</option>
+          <option>Any content!</option>
+        </select>
+      </td>
+    </tr>
+  </table>
+</main>
+
+<svg xmlns="http://www.w3.org/2000/svg"
+  width="1" height="1" style="position:absolute;z-index:-1"
+  color-interpolation-filters="linearRGB">
+
+
+  <filter id="contrast-o-vision" x="0" y="0" width="1" height="1">
+
+    <feColorMatrix in="SourceGraphic"
+                   type="luminanceToAlpha"/>
+
+
+    <feConvolveMatrix kernelMatrix="1  1  1
+                                    1 -8  1
+                                    1  1  1"/>
+
+
+    <feComponentTransfer>
+      <feFuncA type="discrete"
+               tableValues="0 1"/>
+    </feComponentTransfer>
+
+
+    <feColorMatrix type="matrix"
+                   values="1  0  0  0  -1
+                           0  1  0  0   0.8
+                           0  0  1  0   0.2
+                           0  0  0  1   0"
+                   result="INVERTED_VALID_EDGES"/>
+
+
+    <feFlood flood-color="#000" flood-opacity="0.92"/>
+
+
+    <feBlend in2="SourceGraphic"/>
+
+
+    <feMerge>
+      <feMergeNode/>
+      <feMergeNode in="INVERTED_VALID_EDGES"/>
+    </feMerge>
+  </filter>
+</svg>
