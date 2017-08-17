@@ -70,7 +70,7 @@
       <td class="example filtered"><p class="example--animation">Animation</p></td>
     </tr>
 
-    <tr>
+    <tr id="example-selects">
       <td class="example example--dynamic">
         <select class="example--dynamic__select">
           <option>Dynamic content</option>
@@ -90,3 +90,15 @@
 </main>
 
 {{> filters.svg}}
+
+<script>
+(function(d){
+  var selects = d.getElementsByClassName('example--dynamic__select');
+
+  d.getElementById('example-selects').addEventListener('change', function (evt) {
+    var changed = evt.target;
+    var synced = (changed === selects[0]) ? selects[1] : selects[0];
+    synced.value = changed.value;
+  });
+})(document)
+</script>
