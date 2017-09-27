@@ -3,88 +3,60 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no">
 <meta name="theme-color" content="#000000">
+<title>Contrast-O-Vision</title>
+
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#000000">
+
 <link rel="stylesheet" href="./css/base.css">
 <link rel="stylesheet" href="./css/ui.css">
 <script defer src="./js/ui.js"></script>
 
-<menu class="ui">
-  <nav class="ui__nav">
-    <a href="/" class="ui__nav-link">Home</a>
-    <!-- <a href="/about.html" class="ui__nav-link">About</a> -->
-    <a href="https://github.com/tigt/contrast-o-vision" class="ui__nav-link">Source Code</a>
-  </nav>
+<nav class="nav">
+  <a href="/" class="nav__link">Home</a>
+  <a href="https://github.com/tigt/contrast-o-vision" class="nav__link">Source Code</a>
+</nav>
 
+<input type="checkbox" autocomplete="off" id="filter-toggle" role="switch">
+
+<menu class="ui">
   <form class="ui__url-bar"
     target="testframe" action="https://httpbin.org/redirect-to">
-    <p class="url-bar__field field--url">
-      <label class="field__label--url">
-        <span class="visually-hidden">Check URL:</span>
-
-        <input name="url" class="input--url"
+    <p class="field field--url">
+      <label class="field--url__label visually-hidden">URL:
+        <input id="url" name="url" class="field__input input--url"
                type="url" required
-               autocomplete="off"
                placeholder="about:contrast-o-vision"
-               title="Please enter a valid URL."
-               x-moz-errormessage="Please enter a valid URL.">
+               title="Please enter a URL, including the http(s)://">
       </label>
-    </p>
 
-    <p class="url-bar__field field--go">
-      <button type="submit" class="btn btn--go">Go</button>
-    </p>
-
-    <p class="url-bar__field field--refresh">
-      <button type="button" class="btn--refresh"
-        aria-label="Refresh" title="Refresh">
-        <svg viewBox="0 0 180 180" width="1em" height="1em" class="refresh__svg">
-          <path fill="none" stroke="currentColor" stroke-width="26" d="M140 135a67 67 0 1 1 0-90m9 0l-20 20h30V35z"/>
-        </svg>
-      </button>
+      <button class="btn btn--go">Check</button>
     </p>
   </form>
+
+  <label for="filter-toggle">
+    Filter
+
+    <span class="toggle-switch">
+      <span class="toggle-switch__on">On</span>
+      <span class="toggle-switch__off">Off</span>
+    </span>
+  </label>
 </menu>
 
 <main>
-  <svg class="main__svg" width="100%" height="100%">
-    <switch>
-      <foreignObject id="iframe-wrapper" width="100%" height="100%"
-        filter="url(#contrast-o-vision)"
-        requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-        <iframe name="testframe" class="test-frame"
-          src="./intro.html"
-          title="Page currently being tested"></iframe>
-      </foreignObject>
-
-      <text y="1em" x="50%" text-anchor="middle">
-        It looks like your browser
-        <tspan dy="1.2em" x="50%"><a xlink:href="./supported-browsers" href="./supported-browsers">doesn’t support Contrast-O-Vision</a></tspan>.
-      </text>
-    </switch>
-  </svg>
+  <iframe name="testframe" class="test-frame" src="./intro.html"
+    title="Page currently being tested"></iframe>
 </main>
 
-<aside role="error" class="iframe-error" hidden>
-  <h2 class="iframe-error__title">Page embed error</h2>
+<template id="svg-foreignObject-template">
+  <svg class="main__svg" width="100%" height="100%">
+    <foreignObject class="iframe-wrapper" width="100%" height="100%">
+    </foreignObject>
+  </svg>
+</template>
 
-  <p>It looks like that URL might not load. Your DevTools console probably has more info.</p>
-
-  <p>Because this <code>&lt;iframe&gt;</code>s separate-origin sites, I unfortunately can’t be more helpful. Among the reasons you could be seeing this:</p>
-
-  <ul>
-    <li>
-      <p><b>Most common:</b> The page has an <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options"><code>X-Frame-Options</code> header</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">Content Security Policy</a>, blocking it from being framed.</p>
-      <p>I’m working on a bookmarklet and browser extensions to get around this.</p>
-    </li>
-
-    <li>
-      <p>The URL may be wrong. Check your DevTools’s Network tab.</p>
-    </li>
-
-    <li>
-      <p>The page may just be loading slowly. (I can’t tell, because 3<sup>rd</sup> party framing.)</p>
-    </li>
-  </ul>
-</aside>
 
 <svg xmlns="http://www.w3.org/2000/svg"
   width="1" height="1" style="position:absolute;z-index:-1"

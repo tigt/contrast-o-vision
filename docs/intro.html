@@ -3,6 +3,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no">
 <meta name="theme-color" content="#000000">
+<title>About Contrast-O-Vision</title>
+
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#000000">
+
 <link rel="stylesheet" href="./css/base.css">
 <link rel="stylesheet" href="./css/intro.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sarina&text=Complext">
@@ -12,7 +18,7 @@
     src="./img/logo.svg" width="455" height="65">
 </h1>
 
-<main>
+<main class="no-js">
   <div class="intro">
     <p>
       Sick of copy/pasting color codes for accessible contrast checking?
@@ -137,7 +143,7 @@
 </svg>
 
 <script>
-(function(d){
+(function(d){ // Synchronize <select>s
   var selects = d.getElementsByClassName('example--dynamic__select');
 
   d.getElementById('example-selects').addEventListener('change', function (evt) {

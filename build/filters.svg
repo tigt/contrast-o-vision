@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+  width="1" height="1" style="position:absolute;z-index:-1"
+  color-interpolation-filters="linearRGB">
+  <!-- Safari apparently does not support linearRGB? Supposedly it's just a
+    gamma transform away, so we could try doing it ourselves...
+
+    But that would require other browsers to support
+    `color-interpolation-filters="sRGB"`, which they don't appear to.
+  -->
+
+
+  <!-- Set filtered area to filtered element's dimensions.
+
+    By default, <filter> expands a little further beyond what it affects, for
+    convenience with drop shadows and blurs.
+
+    Instead, set x/y to 0 for the filter area's position, and width/height to 1
+    (short for 100%) to only cover the entire element.
+  -->
+  <filter id="contrast-o-vision" x="0" y="0" width="1" height="1">
+
+    <!-- STEP 1: Convert each pixel to its luminance
+
+         This feColorMatrix `type` converts each pixel to rgba(0,0,0, X),
+         where X is the pixel's luminance. This should match the official WCAG
+         algorithm: https://www.w3.org/TR/WCAG20/relative-luminance.xml
+
+         The first operation in the WCAG algorithm when each color component
+         is ≤0.03928 appears to be the conversion from sRGB to linear RGB, so
+         as long as we specify `color-interpolation-filters="linearRGB"` like
+         above, this should be equivalent.
+    -->
+    <feColorMatrix in="SourceGraphic"
+                   type="luminanceToAlpha"/>
+
+
+    <!-- STEP 2: Find high-contrast edges between pixel luminances
+
+         This particular convolution matrix kernel is known as an "Edge
+         Detect", which you may have used in a graphics editor. It displays
+         lines more vividly when the contrast between two adjacent pixels
+         is high.
+
+         It would be nice to know if it can be tweaked to exaggerate/soften
+         its output.
+
+         Other possible matrices:
+           kernelMatrix=" 1 -2  1
+                         -2  4 -2
+                          1 -2  1"
+    -->
+    <feConvolveMatrix kernelMatrix="1  1  1
+                                    1 -8  1
+                                    1  1  1"/>
+
+
+    <!-- STEP 3: Hide edges that are too faint to meet contrast requirements
+
+        This feComponentTransfer should clamp each pixel to either full opacity
+        or full transparency, whichever it's closest to. Edges too faint to
+        match the WCAG requirements should vanish.
+    -->
+    <feComponentTransfer>
+      <feFuncA type="discrete"
+               tableValues="0 1"/>
+    </feComponentTransfer>
+
+
+    <!-- Change the black pixels to green -->
+    <feColorMatrix type="matrix"
+                   values="1  0  0  0  -1
+                           0  1  0  0   0.8
+                           0  0  1  0   0.2
+                           0  0  0  1   0"
+                   result="a"/>
+
+
+    <!-- Generate a very dark overlay
+      We could use flood-color="rgba(0,0,0, 0.92)", but old Safari doesn't like
+      that.
+    -->
+    <feFlood flood-color="#000" flood-opacity="0.92"/>
+
+
+    <!-- Mix that color with the original image, dimming it -->
+    <feBlend in2="SourceGraphic"/>
+
+
+    <!-- Overlay the contrast edges on top of the dimmed original -->
+    <feMerge>
+      <feMergeNode/>
+      <feMergeNode in="a"/>
+    </feMerge>
+  </filter>
+
+  <!--
+    This exists because SVGO will remove the entire filter without it.
+    Yes, I already tried cleanupIDs: false.
+  -->
+  <style/>
+</svg>

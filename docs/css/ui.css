@@ -7,7 +7,18 @@ body {
   display: table;
   table-layout: fixed;
   height: 100%; width: 100%;
-  font-family: Trebuchet MS, sans-serif;
+  font-family: Trebuchet MS, Verdana, sans-serif;
+}
+
+
+.nav {
+  background: #111;
+  padding: 0.2em 0.4em 0.4em;
+}
+
+.nav__link {
+  color: #fff;
+  padding-right: 1em;
 }
 
 .ui {
@@ -15,31 +26,26 @@ body {
   z-index: 1;
   font-size: 1.2em;
   background: #444;
-  box-shadow: inset 0 -1px #999;
-}
-
-.ui__nav {
-  display: flex;
-  justify-content: space-around;
-}
-.ui__nav-link {
   color: #fff;
 }
 
 .ui__url-bar {
-  display: table;
+  display: flex;
   padding: 0.4em;
-  width: 100%;
 }
 
-.url-bar__field {
-  display: table-cell;
+
+.field--url {
+  display: flex;
+  flex: 1;
+  margin: 0;
 }
+
 
 .input--url {
   width: 100%;
   padding: 0.2em 0.3em 0.1em;
-  border-radius: 0.2em;
+  border-radius: 0.2em 0 0 0.2em;
   border: 0;
 }
 .input--url:focus {
@@ -49,47 +55,15 @@ body {
   box-shadow: 0 0 2px 1px #0f0;
 }
 
+
 .btn--go {
-  height: 100%;
-  border: 0;
-  background: #fff;
-  padding: 0;
-  margin-left: -1.5em;
+  border: 1px solid #fff;
+  background: #222;
+  color: #fff;
+  border-radius: 0 0.2em 0.2em 0;
 }
 
-.field--refresh {
-  width: 1em;
-  vertical-align: middle;
-}
 
-.btn--refresh {
-  height: 100%;
-  padding: 0.1em 0.2em;
-  border: 0;
-  background: #ccc;
-  margin-left: 0.1em;
-  border-radius: 0.2em;
-}
-.btn--refresh:hover {
-  box-shadow: 0 2px;
-  background: #eee;
-}
-.btn--refresh:active {
-  box-shadow: inset 0 0 2px;
-  background: #ccc;
-}
-
-.refresh__svg {
-  display: block;
-}
-
-.refresh:active > .refresh__svg {
-  animation: 100ms spin forwards;
-}
-
-@keyframes spin {
-  to { transform: rotate(1turn) }
-}
 
 main {
   display: table-row;
@@ -101,4 +75,66 @@ main {
   width: 100%; height: 100%;
   background-color: #fff;
   border: 0;
+}
+
+/* Edge has a fallback with <foreignObject> wrapping the <iframe> */
+.main__svg {
+  display: table-cell;
+  height: 100%;
+}
+.main__svg .test-frame {
+  display: block;
+  width: 100%; height: 100%;
+}
+
+
+
+/*
+  CSS-only filter toggle switch
+
+  This should be enhanced by JS into a more accessible version, but I want
+  a working no-JS version too, so Contrast-O-Vision will work for devs on
+  bad connections.
+*/
+
+#filter-toggle:checked ~ main > .test-frame,
+#filter-toggle:checked ~ main > .iframe-wrapper {
+  filter: url(#contrast-o-vision);
+}
+
+.toggle-switch {
+  position: relative;
+
+  display: block;
+  height: 1em;
+  width: 2em;
+  border: 3px solid;
+  border-radius: 1em;
+
+  text-transform: uppercase;
+}
+
+.toggle-switch:before {
+  content: "";
+  position: absolute;
+  right: 0;
+
+  height: 1em; width: 1em;
+  border-radius: 100%;
+
+  background: #fff;
+}
+#filter-toggle:checked ~ menu .toggle-switch:before {
+  left: 0;
+  right: auto;
+}
+
+.toggle-switch__on,
+.toggle-switch__off {
+  position: absolute;
+}
+
+#filter-toggle:not(:checked) ~ menu .toggle-switch__on,
+#filter-toggle:checked ~ menu .toggle-switch__off {
+  display: none;
 }

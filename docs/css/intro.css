@@ -95,6 +95,12 @@ svg {
   .example--background.filtered:before { background: #fff }
 }
 
+.no-js .example.filtered,
+.no-js thead,
+.no-js .example:first-child:before {
+  display: none;
+}
+
 .filtered {
   filter: url(#contrast-o-vision);
 }

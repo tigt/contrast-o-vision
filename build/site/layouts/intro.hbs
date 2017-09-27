@@ -8,7 +8,7 @@
     src="./img/logo.svg" width="455" height="65">
 </h1>
 
-<main>
+<main class="no-js">
   <div class="intro">
     <p>
       Sick of copy/pasting color codes for accessible contrast checking?
@@ -92,7 +92,7 @@
 {{> filters.svg}}
 
 <script>
-(function(d){
+(function(d){ // Synchronize <select>s
   var selects = d.getElementsByClassName('example--dynamic__select');
 
   d.getElementById('example-selects').addEventListener('change', function (evt) {
