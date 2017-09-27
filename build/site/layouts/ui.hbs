@@ -10,25 +10,26 @@
   <a href="https://github.com/tigt/contrast-o-vision" class="nav__link">Source Code</a>
 </nav>
 
-<input type="checkbox" autocomplete="off" id="filter-toggle" role="switch">
+<input type="checkbox" role="switch"
+  id="filter-toggle" class="visually-hidden"
+  autocomplete="off"> {{! prevents browser remembering checked state on refresh }}
 
 <menu class="ui">
   <form class="ui__url-bar"
     target="testframe" action="https://httpbin.org/redirect-to">
     <p class="field field--url">
-      <label class="field--url__label visually-hidden">URL:
-        {{! https://tiffanybbrown.com/2012/01/03/input-typeurl-validation-and-user-interfaces/ }}
+      <label class="field--url__label">URL
         <input id="url" name="url" class="field__input input--url"
                type="url" required
                placeholder="about:contrast-o-vision"
-               title="Please enter a URL, including the http(s)://">
+               title="Enter a URL, including the http(s)://">
       </label>
 
       <button class="btn btn--go">Check</button>
     </p>
   </form>
 
-  <label for="filter-toggle">
+  <label for="filter-toggle" class="ui__toggle-label">
     Filter
 
     <span class="toggle-switch">
